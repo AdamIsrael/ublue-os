@@ -8,8 +8,13 @@ RUN wget https://copr.fedorainfracloud.org/coprs/lyessaadi/blackbox/repo/fedora-
 RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-$(rpm -E %fedora)/kylegospo-gnome-vrr-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
 RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr mutter gnome-control-center gnome-control-center-filesystem
 
+RUN wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo
+
 RUN rpm-ostree install gnome-shell-extension-appindicator gnome-shell-extension-dash-to-dock yaru-theme \
     openssl gnome-shell-extension-gsconnect nautilus-gsconnect blackbox-terminal && \
+    byobu code gnome-shell-extension-auto-move-windows gnome-shell-extension-frippery-bottom-panel \
+    gnome-shell-extension-frippery-move-clock gnome-shell-extension-extension-sound-output-device-chooser \
+    gnome-tweaks nmap podman-compose podman-docker tailscale tcpdump vim zsh \
     systemctl unmask dconf-update.service && \
     systemctl enable dconf-update.service && \
     systemctl enable rpm-ostree-countme.service && \

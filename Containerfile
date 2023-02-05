@@ -37,6 +37,7 @@ RUN mv ./kind /usr/bin/kind
 
 
 # Vanilla-first-setup
+RUN rpm-ostree install vte291-gtk4-devel.x86_64
 COPY --from=ghcr.io/adamisrael/vanilla-first-setup:latest /first-setup/vanilla-first-setup.tar.gz /tmp/vanilla-first-setup.tar.gz
 RUN tar xf /tmp/vanilla-first-setup.tar.gz --strip-component=1 -C / && \
     chmod +x /usr/local/bin/vanilla-first-setup
